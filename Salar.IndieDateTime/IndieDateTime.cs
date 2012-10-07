@@ -8,6 +8,12 @@ namespace System
 	/// <summary>
 	/// Provides independent DateTime
 	/// </summary>
+	/// <author>
+	/// Salar Khalilzadeh
+	/// </author>
+	/// <url>
+	/// http://indiedatetime.codeplex.com/
+	/// </url>
 	public class IndieDateTime
 	{
 		private TimeSpan _passedTime;
