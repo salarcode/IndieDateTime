@@ -8,8 +8,8 @@
     <ProjectGuid>{D6B162DC-C386-4EDC-B67D-4635453C8274}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Salar.IndieDateTime</RootNamespace>
-    <AssemblyName>Salar.IndieDateTime</AssemblyName>
+    <RootNamespace>IndieDateTime</RootNamespace>
+    <AssemblyName>IndieDateTime</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 
 namespace System
 {
@@ -22,7 +19,7 @@ namespace System
 		private readonly int _syncIntervalMs;
 
 		public IndieDateTime()
-			: this(500)
+			: this(400)
 		{ }
 
 		/// <param name="updateInterval">Time update interval in milliseconds. Default is 500 ms.</param>
