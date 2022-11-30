@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IndieDateTime", "IndieDateTime\IndieDateTime.csproj", "{D6B162DC-C386-4EDC-B67D-4635453C8274}"
 EndProject
 Global
@@ -26,5 +28,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {89E0ED92-0A9B-4D43-80EF-A892D419E936}
 	EndGlobalSection
 EndGlobal

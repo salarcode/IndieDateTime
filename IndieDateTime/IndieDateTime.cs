@@ -1,73 +1,92 @@
-﻿using System.Threading;
+﻿namespace System;
 
-namespace System
+/// <summary>
+///		Provides independent DateTime by calcuating the offset to the server date time
+/// </summary>
+public class IndieDateTime
 {
+	private double _offset;
+
 	/// <summary>
-	/// Provides independent DateTime
+	/// Provides shared IndieDateTime version
 	/// </summary>
-	/// <author>
-	/// Salar Khalilzadeh
-	/// </author>
-	/// <url>
-	/// http://indiedatetime.codeplex.com/
-	/// </url>
-	public class IndieDateTime
+	public static IndieDateTime Shared { get; } = new();
+
+	/// <summary>
+	/// 
+	/// </summary>
+	public IndieDateTime()
 	{
-		private TimeSpan _passedTime;
-		private DateTime _baseSyncDatetime;
-		private Timer _syncTimer;
-		private readonly int _syncIntervalMs;
+		_offset = 0;
+	}
 
-		public IndieDateTime()
-			: this(400)
-		{ }
-
-		/// <param name="updateInterval">Time update interval in milliseconds. Default is 500 ms.</param>
-		public IndieDateTime(int updateInterval)
+	/// <summary>
+	/// Gets a System.DateTime object that is set to the independent date time.
+	/// </summary>
+	public DateTime Now
+	{
+		get
 		{
-			if (updateInterval <= 0)
+			if (_offset == 0)
+				return DateTime.Now;
+
+			return DateTime.Now.AddMilliseconds(_offset);
+		}
+	}
+
+	/// <summary>
+	/// Gets a System.DateTimeOffset object that is set to the independent date time.
+	/// </summary>
+	public DateTimeOffset NowDto
+	{
+		get
+		{
+			if (_offset == 0)
+				return DateTimeOffset.Now;
+
+			return DateTimeOffset.Now.AddMilliseconds(_offset);
+		}
+	}
+
+	/// <summary>
+	/// Sync date time, will calculate the offset
+	/// </summary>
+	/// <param name="serverDatetime">The server data time</param>
+	/// <param name="toleranceMs">How much of difference in MS is allowed to be captured</param>
+	public void Sync(DateTime serverDatetime, uint toleranceMs = 0)
+	{
+		var diff = DateTime.Now - serverDatetime;
+		if (toleranceMs > 0)
+		{
+			if (diff.TotalMilliseconds > toleranceMs)
 			{
-				throw new ArgumentOutOfRangeException("updateInterval", "Update interval should be greater than zero.");
+				_offset = diff.TotalMilliseconds;
 			}
-			_syncIntervalMs = updateInterval;
-			_passedTime = new TimeSpan();
-			_baseSyncDatetime = DateTime.Now;
-			_syncTimer = new Timer(SyncTimerCallback, null, _syncIntervalMs, _syncIntervalMs);
 		}
-		~IndieDateTime()
+		else
 		{
-			if (_syncTimer != null)
+			_offset = diff.TotalMilliseconds;
+		}
+	}
+
+	/// <summary>
+	/// Sync date time, will calculate the offset
+	/// </summary>
+	/// <param name="serverDatetime">The server data time</param>
+	/// <param name="toleranceMs">How much of difference in MS is allowed to be captured</param>
+	public void Sync(DateTimeOffset serverDatetime, uint toleranceMs = 0)
+	{
+		var diff = DateTimeOffset.Now - serverDatetime;
+		if (toleranceMs > 0)
+		{
+			if (diff.TotalMilliseconds > toleranceMs)
 			{
-				_syncTimer.Dispose();
+				_offset = diff.TotalMilliseconds;
 			}
-			_syncTimer = null;
 		}
-
-
-		void SyncTimerCallback(object state)
+		else
 		{
-			// sync the passed time
-			_passedTime = _passedTime.Add(new TimeSpan(0, 0, 0, _syncIntervalMs));
-		}
-
-		/// <summary>
-		/// Sync date time, this dateTime will be used as the base.
-		/// </summary>
-		public void Sync(DateTime baseSyncDatetime)
-		{
-			_passedTime = new TimeSpan();
-			_baseSyncDatetime = baseSyncDatetime;
-
-			// reset the timer!
-			_syncTimer.Change(_syncIntervalMs, _syncIntervalMs);
-		}
-
-		/// <summary>
-		/// Gets a System.DateTime object that is set to the independent date time.
-		/// </summary>
-		public DateTime Now
-		{
-			get { return _baseSyncDatetime.Add(_passedTime); }
+			_offset = diff.TotalMilliseconds;
 		}
 	}
 }
