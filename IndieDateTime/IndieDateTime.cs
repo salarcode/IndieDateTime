@@ -34,6 +34,18 @@ public class IndieDateTime
 		}
 	}
 
+	public DateTime UtcNow
+	{
+		get
+		{
+			if (_offset == 0)
+				return DateTime.UtcNow;
+
+			// Note: this is usefull in case local timezone is incorrect or time is behind, so the calculation of UTC will be wrong too
+			return DateTime.UtcNow.AddMilliseconds(_offset);
+		}
+	}
+
 	/// <summary>
 	/// Gets a System.DateTimeOffset object that is set to the independent date time.
 	/// </summary>
@@ -45,6 +57,17 @@ public class IndieDateTime
 				return DateTimeOffset.Now;
 
 			return DateTimeOffset.Now.AddMilliseconds(_offset);
+		}
+	}
+
+	public DateTimeOffset UtcNowDto
+	{
+		get
+		{
+			if (_offset == 0)
+				return DateTimeOffset.UtcNow;
+
+			return DateTimeOffset.UtcNow.AddMilliseconds(_offset);
 		}
 	}
 
