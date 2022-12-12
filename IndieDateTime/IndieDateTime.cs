@@ -34,6 +34,9 @@ public class IndieDateTime
 		}
 	}
 
+	/// <summary>
+	/// Gets a System.DateTime object that is set to the independent date time, expressed as the Coordinated Universal Time (UTC).
+	/// </summary>
 	public DateTime UtcNow
 	{
 		get
@@ -47,7 +50,7 @@ public class IndieDateTime
 	}
 
 	/// <summary>
-	/// Gets a System.DateTimeOffset object that is set to the independent date time.
+	///Gets a System.DateTimeOffset object that is set to the independent date time, with the offset set to the servers time's offset from Coordinated Universal Time (UTC).
 	/// </summary>
 	public DateTimeOffset NowDto
 	{
@@ -60,6 +63,9 @@ public class IndieDateTime
 		}
 	}
 
+	/// <summary>
+	/// Gets a System.DateTimeOffset object whose date and time are set to the current Coordinated Universal Time (UTC) date and time and whose offset is synced with server.
+	/// </summary>
 	public DateTimeOffset UtcNowDto
 	{
 		get
