@@ -81,7 +81,28 @@ public class IndieDateTime
 		var diff = DateTime.Now - serverDatetime;
 		if (toleranceMs > 0)
 		{
-			if (diff.TotalMilliseconds > toleranceMs)
+			if (Math.Abs(diff.TotalMilliseconds) > toleranceMs)
+			{
+				_offset = diff.TotalMilliseconds;
+			}
+		}
+		else
+		{
+			_offset = diff.TotalMilliseconds;
+		}
+	}
+
+	/// <summary>
+	/// Sync UTC date time, will calculate the offset
+	/// </summary>
+	/// <param name="utcServerDatetime">The server data time</param>
+	/// <param name="toleranceMs">How much of difference in MS is allowed to be captured</param>
+	public void SyncUtc(DateTime utcServerDatetime, uint toleranceMs = 0)
+	{
+		var diff = DateTime.UtcNow - utcServerDatetime;
+		if (toleranceMs > 0)
+		{
+			if (Math.Abs(diff.TotalMilliseconds) > toleranceMs)
 			{
 				_offset = diff.TotalMilliseconds;
 			}
