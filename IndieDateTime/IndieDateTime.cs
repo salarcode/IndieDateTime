@@ -81,7 +81,7 @@ public class IndieDateTime
 	/// Sync date time, will calculate the offset
 	/// </summary>
 	/// <param name="serverDatetime">The server data time</param>
-	/// <param name="toleranceMs">How much of difference in MS is allowed to be captured</param>
+	/// <param name="toleranceMs">How much of difference in MS is allowed before dates difference is captured</param>
 	public void Sync(DateTime serverDatetime, uint toleranceMs = 0)
 	{
 		var diff = DateTime.Now - serverDatetime;
@@ -102,7 +102,7 @@ public class IndieDateTime
 	/// Sync UTC date time, will calculate the offset
 	/// </summary>
 	/// <param name="utcServerDatetime">The server data time</param>
-	/// <param name="toleranceMs">How much of difference in MS is allowed to be captured</param>
+	/// <param name="toleranceMs">How much of difference in MS is allowed before dates difference is captured</param>
 	public void SyncUtc(DateTime utcServerDatetime, uint toleranceMs = 0)
 	{
 		var diff = DateTime.UtcNow - utcServerDatetime;
@@ -123,7 +123,7 @@ public class IndieDateTime
 	/// Sync date time, will calculate the offset
 	/// </summary>
 	/// <param name="serverDatetime">The server data time</param>
-	/// <param name="toleranceMs">How much of difference in MS is allowed to be captured</param>
+	/// <param name="toleranceMs">How much of difference in MS is allowed before dates difference is captured</param>
 	public void Sync(DateTimeOffset serverDatetime, uint toleranceMs = 0)
 	{
 		var diff = DateTimeOffset.Now - serverDatetime;
