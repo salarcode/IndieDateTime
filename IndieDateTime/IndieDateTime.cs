@@ -78,6 +78,11 @@ public class IndieDateTime
 	}
 
 	/// <summary>
+	/// Calculated servers time's offset
+	/// </summary>
+	public double Offset => _offset;
+
+	/// <summary>
 	/// Sync date time, will calculate the offset
 	/// </summary>
 	/// <param name="serverDatetime">The server data time</param>

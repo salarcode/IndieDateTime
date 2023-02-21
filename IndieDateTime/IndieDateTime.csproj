@@ -7,9 +7,9 @@
 		<LangVersion>latest</LangVersion>
 		<IsTrimmable>true</IsTrimmable>
 		<Authors>Salar Khalilzadeh</Authors>
-		<Copyright>Copyright © Salar 2022</Copyright>
-		<AssemblyVersion>2.0.0</AssemblyVersion>
-		<Version>2.0.0</Version>
+		<Copyright>Copyright © Salar 2023</Copyright>
+		<AssemblyVersion>2.1.0</AssemblyVersion>
+		<Version>2.1.0</Version>
 		<PackageProjectUrl>https://github.com/salarcode/IndieDateTime</PackageProjectUrl>
 	</PropertyGroup>
 
